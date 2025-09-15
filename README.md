@@ -5,6 +5,13 @@ which is available in the [bin](bin) directory of this repo.
 This utility can be used to transparently checkpoint and restore CUDA state within a running Linux process,
 and can be combined with [CRIU](https://criu.org/Main_Page) (described below) to fully checkpoint CUDA applications.
 
+## 580 Features
+Display driver version 580 includes these features not present in 570:
+* GPU migration
+* Container partial passthrough support (also present in some 575 drivers)
+
+Demo programs show how to use GPU migration [using the API](src/r580-migration-api.c) and [using cuda-checkpoint](src/r580-migration-cli.c)
+
 ## 570 Features
 Display driver version 570 includes these features not present in 550:
 * NVML support
@@ -248,7 +255,6 @@ In particular, `cuda-checkpoint`:
 
 * is x64 only,
 * does not support UVM or IPC memory,
-* does not support GPU migration,
 * waits for already-submitted CUDA work to finish before completing a checkpoint,
 * does not attempt to keep the process in a good state if an error (such as the presence of a UVM allocation) is encountered during checkpoint or restore.
 
