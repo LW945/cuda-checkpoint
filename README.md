@@ -262,5 +262,21 @@ These limitations will be addressed in subsequent display driver releases,
 and will not require an update to the `cuda-checkpoint` utility itself.
 The `cuda-checkpoint` utility simply exposes functionality that is contained in the driver.
 
+## Timing Tool
+This repo also includes a small helper script at [tools/checkpoint_timer.py](tools/checkpoint_timer.py)
+for measuring the CUDA-only sequence below for a running process:
+
+```text
+lock -> checkpoint -> restore -> unlock
+```
+
+Example:
+
+```bash
+python3 tools/checkpoint_timer.py --pid <pid>
+```
+
+The script does not use CRIU and does not create a durable process image on disk.
+
 ## License
 By downloading or using the software, you agree to the terms of the [License Agreement for NVIDIA Software Development Kits — EULA](https://docs.nvidia.com/cuda/eula/index.html).
